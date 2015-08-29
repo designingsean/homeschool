@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  record_id: 
+  subject_id: 
+  teacher_id: 
+  date: 2015-08-29
+  description: MyText
+  book_id: 
+
+two:
+  record_id: 
+  subject_id: 
+  teacher_id: 
+  date: 2015-08-29
+  description: MyText
+  book_id: 
