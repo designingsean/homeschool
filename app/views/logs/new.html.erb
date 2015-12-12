@@ -1,0 +1,33 @@
+<div class="container">
+  <%= form_for @logs do |f| %>
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <%= f.label :student_id %>
+        <%= f.collection_select(:student_id, Student.all, :id, :first, {}, { class: "form-control" }) %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.label :subject_id %>
+        <%= f.collection_select(:subject_id, Subject.all, :id, :subject, {}, { class: "form-control" }) %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.label :teacher_id %>
+        <%= f.collection_select(:teacher_id, Teacher.all, :id, :first, {}, { class: "form-control" }) %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.label :date %>
+        <%= f.date_field :date, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <%= f.submit "Add Log", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
