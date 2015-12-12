@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'logs/index'
-  # root 'logs#index'
+  root 'logs#index'
+  resources :logs do
+    collection do
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

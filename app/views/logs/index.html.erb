@@ -1,2 +1,27 @@
-<h1>Logs#index</h1>
-<p>Find me in app/views/logs/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Logs</h1>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Date</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @logs.each do |log| %>
+          <tr>
+            <td><%= log.subject.subject %></td>
+            <td><%= log.teacher.first %></td>
+            <td><%= log.date %></td>
+            <td><%= log.description %><% if log.book %><%= log.book.author %> - <%= log.book.title %><% end %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
