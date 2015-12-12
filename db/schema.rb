@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829225535) do
+ActiveRecord::Schema.define(version: 20151203170242) do
 
   create_table "books", force: :cascade do |t|
     t.string "author", limit: 255, null: false
@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(version: 20150829225535) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer "record_id",   limit: 4,     null: false
-    t.integer "subject_id",  limit: 4,     null: false
-    t.integer "teacher_id",  limit: 4,     null: false
-    t.date    "date",                      null: false
+    t.integer "subject_id",  limit: 4,                 null: false
+    t.integer "teacher_id",  limit: 4,                 null: false
+    t.date    "date",                                  null: false
     t.text    "description", limit: 65535
     t.integer "book_id",     limit: 4
+    t.integer "student_id",  limit: 4,     default: 1, null: false
   end
 
   add_index "logs", ["book_id"], name: "index_logs_on_book_id", using: :btree
-  add_index "logs", ["record_id"], name: "index_logs_on_record_id", using: :btree
+  add_index "logs", ["student_id"], name: "index_logs_on_student_id", using: :btree
   add_index "logs", ["subject_id"], name: "index_logs_on_subject_id", using: :btree
   add_index "logs", ["teacher_id"], name: "index_logs_on_teacher_id", using: :btree
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150829225535) do
   end
 
   add_foreign_key "logs", "books"
-  add_foreign_key "logs", "records"
+  add_foreign_key "logs", "students"
   add_foreign_key "logs", "subjects"
   add_foreign_key "logs", "teachers"
   add_foreign_key "records", "grades"
