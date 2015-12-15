@@ -18,7 +18,7 @@
             <td><%= log.subject.subject %></td>
             <td><%= log.teacher.first %></td>
             <td><%= log.date %></td>
-            <td><%= log.description %><% if log.book %><%= log.book.author %> - <%= log.book.title %><% end %></td>
+            <td><% if log.book %>&ldquo;<%= log.book.title %>&rdquo; by <%= log.book.author %><br><% end %><%= log.description %></td>
           </tr>
         <% end %>
         </tbody>
