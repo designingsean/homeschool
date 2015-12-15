@@ -1,21 +1,30 @@
 <div class="container">
   <%= form_for @logs do |f| %>
     <div class="row">
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
         <%= f.label :student_id %>
         <%= f.collection_select(:student_id, Student.all, :id, :first, {}, { class: "form-control" }) %>
       </div>
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
         <%= f.label :subject_id %>
         <%= f.collection_select(:subject_id, Subject.all, :id, :subject, {}, { class: "form-control" }) %>
       </div>
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
         <%= f.label :teacher_id %>
         <%= f.collection_select(:teacher_id, Teacher.all, :id, :first, {}, { class: "form-control" }) %>
       </div>
-      <div class="form-group col-sm-3">
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-4">
         <%= f.label :date %>
         <%= f.date_field :date, class: "form-control", value: Date.today %>
+      </div>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= f.collection_select(:book_id, Book.all, :id, :title, { include_blank: true }, { class: "form-control" }) %>
+      </div>
+      <div class="form-group col-sm-4">
+        <%= link_to "Add new book",  "#", class: "btn btn-default" %>
       </div>
     </div>
     <div class="row">
