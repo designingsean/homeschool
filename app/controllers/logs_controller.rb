@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
   def index
     @logs = Log.all.reverse
+    @count = Log.distinct.count(:date)
   end
 
   def new
