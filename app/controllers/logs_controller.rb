@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
   def index
-    @logs = Log.all
+    @logs = Log.all.reverse
   end
 
   def new
