@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
   def index
-    @logs = Log.all.reverse
+    @logs = Log.all.order(date: :desc, subject_id: :asc)
     @count = Log.distinct.count(:date)
   end
 
