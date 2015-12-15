@@ -76,7 +76,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # relative root
-  config.action_controller.relative_url_root = "/homeschool"
 end
