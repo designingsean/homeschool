@@ -1,8 +1,12 @@
 <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add New Record</h1>
+    </div>
+  </div>
   <%= form_for @logs do |f| %>
     <div class="row">
       <div class="form-group col-sm-4">
-        <h1>Add New Record</h1>
         <%= f.label :student_id %>
         <%= f.collection_select(:student_id, Student.all, :id, :first, {}, { class: "form-control" }) %>
       </div>
