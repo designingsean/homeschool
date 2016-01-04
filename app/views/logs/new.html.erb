@@ -1,6 +1,7 @@
 <div class="container">
   <%= form_for @logs do |f| %>
     <div class="row">
+      <h1>Add New Record</h1>
       <div class="form-group col-sm-4">
         <%= f.label :student_id %>
         <%= f.collection_select(:student_id, Student.all, :id, :first, {}, { class: "form-control" }) %>
