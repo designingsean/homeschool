@@ -12,6 +12,19 @@ class BooksController < ApplicationController
     redirect_to controller: "logs", action: "new"
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update_attributes(book_params)
+      redirect_to controller: "logs", action: "index"
+    else
+      render "edit"
+    end
+  end
+
   private
 
   def book_params
