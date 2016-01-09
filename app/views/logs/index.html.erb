@@ -10,6 +10,7 @@
             <th>Teacher</th>
             <th>Date</th>
             <th>Description</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -18,7 +19,11 @@
             <td><%= log.subject.subject %></td>
             <td><%= log.teacher.first %></td>
             <td><%= log.date %></td>
-            <td><% if log.book %>&ldquo;<%= log.book.title %>&rdquo; by <%= log.book.author %><br><% end %><%= simple_format(log.description) %></td>
+            <td>
+              <% if log.book %>&ldquo;<%= log.book.title %>&rdquo; by <%= log.book.author %><br><% end %>
+              <%= simple_format(log.description) %>
+            </td>
+            <td><%= link_to "Edit", edit_log_path(log.id) %></td>
           </tr>
         <% end %>
         </tbody>

@@ -37,9 +37,22 @@ class LogsController < ApplicationController
     redirect_to controller: "logs", action: "index"
   end
 
+  def edit
+    @log = Log.find(params[:id])
+  end
+
+  def update
+    @log = Log.find(params[:id])
+    if @log.update_attributes(log_params)
+      redirect_to controller: "logs", action: "index"
+    else
+      render "edit"
+    end
+  end
+
   private
 
   def log_params
-    params.require(:log).permit(:student_id, :subject_id, :teacher_id, :date, :reading, :writing, :math, :science, :social_studies, :book_id)
+    params.require(:log).permit(:student_id, :subject_id, :teacher_id, :date, :description, :reading, :writing, :math, :science, :social_studies, :book_id)
   end
 end
