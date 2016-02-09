@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203170242) do
+ActiveRecord::Schema.define(version: 20160209134846) do
 
   create_table "books", force: :cascade do |t|
-    t.string "author", limit: 255, null: false
-    t.string "title",  limit: 255, null: false
+    t.string  "author",     limit: 255, null: false
+    t.string  "title",      limit: 255, null: false
+    t.integer "subject_id", limit: 4
   end
+
+  add_index "books", ["subject_id"], name: "fk_rails_7b383e10ff", using: :btree
 
   create_table "grades", force: :cascade do |t|
     t.integer "grade", limit: 4, null: false
@@ -64,6 +67,7 @@ ActiveRecord::Schema.define(version: 20151203170242) do
     t.string "year", limit: 9, null: false
   end
 
+  add_foreign_key "books", "subjects"
   add_foreign_key "logs", "books"
   add_foreign_key "logs", "students"
   add_foreign_key "logs", "subjects"
