@@ -20,42 +20,58 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-sm-4">
-        <%= f.label :book_id %>
-        <%= f.collection_select(:book_id, Book.all, :id, :title, { include_blank: true }, { class: "form-control" }) %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= link_to "Add new book",  new_book_path, class: "btn btn-default" %>
-      </div>
-    </div>
-    <div class="row">
       <div class="form-group col-sm-12">
-        <%= label(:log, :reading) %>
+        <h2>Reading</h2>
+        <%= label(:log, :description) %>
         <%= text_area(:log, :reading, class: "form-control") %>
       </div>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= collection_select(:log, :reading_book_id, Book.where(:subject_id => [nil, 1]), :id, :title, { include_blank: true }, { class: "form-control" }) %>
+      </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-12">
-        <%= label(:log, :writing) %>
+        <h2>Writing</h2>
+        <%= label(:log, :description) %>
         <%= text_area(:log, :writing, class: "form-control") %>
       </div>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= collection_select(:log, :writing_book_id, Book.where(:subject_id => 2), :id, :title, { include_blank: true }, { class: "form-control" }) %>
+      </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-12">
-        <%= label(:log, :math) %>
+        <h2>Math</h2>
+        <%= label(:log, :description) %>
         <%= text_area(:log, :math, class: "form-control") %>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <%= label(:log, :science) %>
-        <%= text_area(:log, :science, class: "form-control") %>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= collection_select(:log, :math_book_id, Book.where(:subject_id => 3), :id, :title, { include_blank: true }, { class: "form-control" }) %>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-12">
-        <%= label(:log, :social_studies) %>
+        <h2>Science</h2>
+        <%= label(:log, :description) %>
+        <%= text_area(:log, :science, class: "form-control") %>
+      </div>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= collection_select(:log, :science_book_id, Book.where(:subject_id => 4), :id, :title, { include_blank: true }, { class: "form-control" }) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <h2>Social Studies</h2>
+        <%= label(:log, :description) %>
         <%= text_area(:log, :social_studies, class: "form-control") %>
+      </div>
+      <div class="form-group col-sm-4">
+        <%= f.label :book_id %>
+        <%= collection_select(:log, :social_studies_book_id, Book.where(:subject_id => 5), :id, :title, { include_blank: true }, { class: "form-control" }) %>
       </div>
     </div>
     <div class="row">
