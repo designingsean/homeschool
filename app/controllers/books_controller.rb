@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     else
       flash[:error] = "Book not saved"
     end
-    redirect_to controller: "logs", action: "new"
+    redirect_to controller: "logs", action: "index"
   end
 
   def edit
