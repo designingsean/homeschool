@@ -6,6 +6,14 @@ class Log < ActiveRecord::Base
 
   before_save :normalize_blank_values
 
+  def self.current_school_year
+    self.joins(record: :year).where('CURDATE() BETWEEN start_date AND end_date')
+  end
+
+  def self.student_counts
+    self.joins(record: :student).current_school_year.group(:record_id).select('records.id, students.first, COUNT(DISTINCT logs.date) AS count')
+  end
+
   def normalize_blank_values
     attributes.each do |column, value|
       self[column].present? || self[column] = nil

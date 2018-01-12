@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,65 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209134846) do
+ActiveRecord::Schema.define(version: 20180111051251) do
 
-  create_table "books", force: :cascade do |t|
-    t.string  "author",     limit: 255, null: false
-    t.string  "title",      limit: 255, null: false
-    t.integer "subject_id", limit: 4
+  create_table "books", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "author", null: false
+    t.string "title", null: false
+    t.integer "subject_id"
+    t.index ["subject_id"], name: "fk_rails_7b383e10ff"
   end
 
-  add_index "books", ["subject_id"], name: "fk_rails_7b383e10ff", using: :btree
-
-  create_table "grades", force: :cascade do |t|
-    t.integer "grade", limit: 4, null: false
+  create_table "grades", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "grade", null: false
   end
 
-  create_table "logs", force: :cascade do |t|
-    t.integer "subject_id",  limit: 4,                 null: false
-    t.integer "teacher_id",  limit: 4,                 null: false
-    t.date    "date",                                  null: false
-    t.text    "description", limit: 65535
-    t.integer "book_id",     limit: 4
-    t.integer "student_id",  limit: 4,     default: 1, null: false
+  create_table "logs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "subject_id", null: false
+    t.integer "teacher_id", null: false
+    t.date "date", null: false
+    t.text "description"
+    t.integer "book_id"
+    t.integer "record_id", null: false
+    t.index ["book_id"], name: "index_logs_on_book_id"
+    t.index ["subject_id"], name: "index_logs_on_subject_id"
+    t.index ["teacher_id"], name: "index_logs_on_teacher_id"
   end
 
-  add_index "logs", ["book_id"], name: "index_logs_on_book_id", using: :btree
-  add_index "logs", ["student_id"], name: "index_logs_on_student_id", using: :btree
-  add_index "logs", ["subject_id"], name: "index_logs_on_subject_id", using: :btree
-  add_index "logs", ["teacher_id"], name: "index_logs_on_teacher_id", using: :btree
-
-  create_table "records", force: :cascade do |t|
-    t.integer "student_id", limit: 4, null: false
-    t.integer "year_id",    limit: 4, null: false
-    t.integer "grade_id",   limit: 4, null: false
+  create_table "records", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "student_id", null: false
+    t.integer "year_id", null: false
+    t.integer "grade_id", null: false
+    t.index ["grade_id"], name: "index_records_on_grade_id"
+    t.index ["student_id"], name: "index_records_on_student_id"
+    t.index ["year_id"], name: "index_records_on_year_id"
   end
 
-  add_index "records", ["grade_id"], name: "index_records_on_grade_id", using: :btree
-  add_index "records", ["student_id"], name: "index_records_on_student_id", using: :btree
-  add_index "records", ["year_id"], name: "index_records_on_year_id", using: :btree
-
-  create_table "students", force: :cascade do |t|
+  create_table "students", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first", limit: 20, null: false
-    t.string "last",  limit: 20, null: false
+    t.string "last", limit: 20, null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
+  create_table "subjects", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "subject", limit: 20, null: false
   end
 
-  create_table "teachers", force: :cascade do |t|
+  create_table "teachers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first", limit: 20, null: false
-    t.string "last",  limit: 20, null: false
+    t.string "last", limit: 20, null: false
   end
 
-  create_table "years", force: :cascade do |t|
+  create_table "years", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "year", limit: 9, null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   add_foreign_key "books", "subjects"
   add_foreign_key "logs", "books"
-  add_foreign_key "logs", "students"
   add_foreign_key "logs", "subjects"
   add_foreign_key "logs", "teachers"
   add_foreign_key "records", "grades"
