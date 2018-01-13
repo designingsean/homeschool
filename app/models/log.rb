@@ -7,7 +7,7 @@ class Log < ActiveRecord::Base
   before_save :normalize_blank_values
 
   def self.current_school_year
-    self.joins(record: :year).where('CURDATE() BETWEEN start_date AND end_date')
+    self.joins(record: :year).where('CURDATE() BETWEEN start_date AND end_date').order(date: :desc)
   end
 
   def self.student_counts
